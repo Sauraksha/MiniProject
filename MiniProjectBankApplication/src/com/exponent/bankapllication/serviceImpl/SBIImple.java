@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 import com.exponent.bankapllication.model.Account;
 import com.exponent.bankapllication.service.RBI;
+import com.exponent.bankapplication.validation.Validation;
 
 public class SBIImple implements RBI {
+	
+	boolean isAccountCreated=false;
 	
 	Scanner sc=new Scanner(System.in);
 	Account ac=new Account();
@@ -13,9 +16,10 @@ public class SBIImple implements RBI {
 
 	@Override
 	public void createAccount() {
-		System.out.println("Enter your account number:");
-		int accNo=sc.nextInt();
-		ac.setAccountNumber(accNo);
+	
+//		System.out.println("Enter your account number:");
+//		int accNo=sc.nextInt();
+//		ac.setAccountNumber(accNo);
 		
 		System.out.println("Enter your name:");
 		String name=sc.next();
@@ -30,15 +34,18 @@ public class SBIImple implements RBI {
 		System.out.println("Enter your email:");
 		ac.setEmail(sc.next());
 		
-		System.out.println("Enter your contact number:");
-		ac.setContact(sc.nextLong());
+//		System.out.println("Enter your contact number:");
+		long cNumber = Validation.getContactNumber();
+		ac.setContact(cNumber);
 		
 		System.out.println("Enter account opening amount:");
 		ac.setAccountBalance(sc.nextDouble());
 		
+		Validation.getAccountNumber();
+		
 		System.out.println("Account created successfully......");
 		
-		
+		isAccountCreated=true;
 		
 		
 	
@@ -47,8 +54,12 @@ public class SBIImple implements RBI {
 
 	@Override
 	public void showAccountDetails() {
+		if(isAccountCreated)
+		{
+			
+		
 		System.out.println("Enter your account number:");
-		int accountNumber=sc.nextInt();
+		long accountNumber=sc.nextInt();
 		if(accountNumber==ac.getAccountNumber())
 		{
 //			System.out.println(ac);
@@ -65,11 +76,20 @@ public class SBIImple implements RBI {
 		{
 			System.out.println("Account doesnt exist:");
 		}
+		}
+		else
+		{
+			System.out.println("You need to create account:");
+		}
 		
 	}
 
 	@Override
 	public void showAccountBalance() {
+		if(isAccountCreated)
+		{
+			
+		
 		System.out.println("Enter your account number:");
 		int accountNumber=sc.nextInt();
 		if(accountNumber==ac.getAccountNumber())
@@ -80,6 +100,11 @@ public class SBIImple implements RBI {
 		{
 			System.out.println("Account doesn' 2 t exist:");
 		}
+		}
+		else
+		{
+			System.out.println("You need to create account:");
+		}
 		
 		
 		
@@ -87,27 +112,49 @@ public class SBIImple implements RBI {
 
 	@Override
 	public void depositMoney() {
+		if(isAccountCreated)
+		{
+			
+	
 		System.out.println("Enter the amount to deposit:");
 		double deposit =sc.nextDouble();
 		double updateBalance=ac.getAccountBalance()+deposit;
 		ac.setAccountBalance(updateBalance);
 		System.out.println("New Balance is"+updateBalance);
+		}
+		else
+		{
+			System.out.println("You need to create account:");
+		}
 		
 	}
 
 	@Override
 	public void withdrawMoney() {
+		if(isAccountCreated)
+		{
+			
+		
 		System.out.println("Enter the amount to withdraw:");
 		double withdrawmoney=sc.nextDouble();
 		double updateBalance=ac.getAccountBalance()-withdrawmoney;
 		ac.setAccountBalance(updateBalance);
 		System.out.println("New Balance is"+updateBalance);
+		}
+		else
+		{
+			System.out.println("You need to create account:");
+		}
 			
 		
 	}
 
 	@Override
 	public void updateAccountDetails() {
+		if(isAccountCreated)
+		{
+			
+		
 		System.out.println("Enter your choice:");
 		int ch=sc.nextInt();
 		switch(ch)
@@ -125,7 +172,11 @@ public class SBIImple implements RBI {
 				ac.setEmail(sc.next());
 				break;
 		}
-		
+		}
+		else
+		{
+			System.out.println("You need to create account:");
+		}
 	}
 
 }

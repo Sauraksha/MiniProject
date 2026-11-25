@@ -1,8 +1,10 @@
 package com.exponent.bankapllication.model;
 
+import com.exponent.bankapplication.validation.Validation;
+
 public class Account {
 
-	private int accountNumber;
+	private long accountNumber;
 	private String name;
 	private String adharNumber;
 	private String panNumber;
@@ -10,10 +12,10 @@ public class Account {
 	private String email;
 	private double accountBalance;
 	
-	public int getAccountNumber() {
+	public long getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public String getName() {
@@ -38,6 +40,7 @@ public class Account {
 		return contact;
 	}
 	public void setContact(long contact) {
+//		Validation.getContactNumber();
 		this.contact = contact;
 	}
 	public String getEmail() {
