@@ -34,7 +34,7 @@ public class SBIImple implements RBI {
 		System.out.println("Enter your email:");
 		ac.setEmail(sc.next());
 		
-//		System.out.println("Enter your contact number:");
+
 		long cNumber = Validation.getContactNumber();
 		ac.setContact(cNumber);
 		

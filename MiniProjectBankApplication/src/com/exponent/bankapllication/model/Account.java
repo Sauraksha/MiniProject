@@ -40,7 +40,7 @@ public class Account {
 		return contact;
 	}
 	public void setContact(long contact) {
-//		Validation.getContactNumber();
+
 		this.contact = contact;
 	}
 	public String getEmail() {
